@@ -1,0 +1,38 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <!-- REQUIRED: Group ID is the feature ID -->
+  <groupId>ac.soton.eventb.statemachines</groupId>
+  <!-- Name of this artifact -->
+  <artifactId>root</artifactId>
+  <!-- REQUIRED: Name and description of this this root build -->
+  <name>UML-B Statemachines Diagrams Root POM</name>
+  <description>Root artifact for UML-B Statemachines Diagrams</description>
+  <!-- REQUIRED: Version number (using semantic versioning) -->
+  <version>4.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <parent>
+    <!-- REQUIRED: Group ID is the feature ID -->
+    <groupId>ac.soton.eventb.statemachines</groupId>
+    <!-- Name of the release engineering artifact -->
+    <artifactId>releng</artifactId>
+    <!-- REQUIRED: Version number of the release engineering artifact -->
+    <version>4.0.1-SNAPSHOT</version>
+    <!-- REQUIRED: Relative path to the release engineering artifact -->
+    <relativePath>./ac.soton.eventb.statemachines.releng</relativePath>
+  </parent>
+
+  <modules>
+    <!-- LATER: List of modules in this build -->
+    <module>ac.soton.eventb.statemachines</module>
+    <module>ac.soton.eventb.statemachines.branding</module>
+    <module>ac.soton.eventb.statemachines.diagram</module>
+    <module>ac.soton.eventb.statemachines.edit</module>
+    <module>ac.soton.eventb.statemachines.generator</module>
+    <!-- <module>ac.soton.eventb.statemachines.generator.tests</module> -->
+    <module>ac.soton.eventb.statemachines.navigator</module>
+    <module>ac.soton.eventb.statemachines.persistence</module>
+    <!-- <module>ac.soton.eventb.statemachines.persistence.tests</module> -->
+    <module>ac.soton.eventb.statemachines.feature</module>
+    <module>ac.soton.eventb.statemachines.sdk</module>
+  </modules>
+</project>
