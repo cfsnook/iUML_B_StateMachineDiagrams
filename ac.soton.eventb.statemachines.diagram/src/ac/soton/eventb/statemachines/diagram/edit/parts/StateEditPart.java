@@ -569,15 +569,17 @@ public class StateEditPart extends ShapeNodeEditPart {
 	}
 
 	private String getText() {
-		State state = (State) resolveSemanticElement();
 		String text = "";
-		EList<?> ains = state.getActiveInstances();
-		if (ains != null && ains.size() > 0) {
-			for (Object ins : ains) {
-				if (ins instanceof String) {
-					if (text.length() > 0)
-						text = text + "\n";
-					text = text + ins;
+		State state = (State) resolveSemanticElement();
+		if (state!=null){
+			EList<?> ains = state.getActiveInstances();
+			if (ains != null && ains.size() > 0) {
+				for (Object ins : ains) {
+					if (ins instanceof String) {
+						if (text.length() > 0)
+							text = text + "\n";
+						text = text + ins;
+					}
 				}
 			}
 		}
