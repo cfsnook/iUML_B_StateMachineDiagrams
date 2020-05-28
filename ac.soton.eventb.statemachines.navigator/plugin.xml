@@ -29,8 +29,11 @@
             </contentExtension></includes>
       </viewerContentBinding>
    </extension>
+   
+   
    <extension
          point="org.eclipse.ui.menus">
+         
       <menuContribution
             locationURI="popup:fr.systerel.explorer.navigator.view">
          <command
@@ -38,21 +41,48 @@
                icon="icons/NewStatemachine.gif"
                label="Add Statemachine"
                style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="selection">
-                  <iterate
-                        ifEmpty="false">
-                     <instanceof
-                           value="org.eventb.core.IMachineRoot">
-                     </instanceof>
-                  </iterate>
-               </with>
+            <visibleWhen checkEnabled="false">
+                <with variable="selection">
+		            <reference definitionId = "ac.soton.eventb.statemachines.navigator.isStatemachineContainer"/>
+	            </with>
             </visibleWhen>
          </command>
       </menuContribution>
+      
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:fr.systerel.explorer.navigator.view?after=group.edit">
+         <command
+               commandId="org.eclipse.ui.edit.copy"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="ac.soton.eventb.statemachines.navigator.isStatemachineContainer">
+               </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      
    </extension>
+   
+   
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="ac.soton.eventb.statemachines.navigator.isStatemachineContainer">
+            <iterate
+                 ifEmpty="false">
+	            <or>
+	               <adapt type="org.eclipse.emf.ecore.EObject">
+	                  <instanceof value="ac.soton.eventb.emf.diagrams.UMLB"/>
+	               </adapt>
+	               <instanceof value="org.eventb.core.IMachineRoot"/>
+	            </or>
+            </iterate>
+      </definition>
+   </extension>
+   
    <extension
          point="org.eclipse.ui.commands">
       <command
@@ -61,11 +91,14 @@
             name="Add Statemachine">
       </command>
    </extension>
+   
    <extension
          point="ac.soton.eventb.emf.core.extension.navigator.adapterFactories">
       <factory
             class="ac.soton.eventb.statemachines.provider.StatemachinesItemProviderAdapterFactory"></factory>
    </extension>
+   
+   
    <extension
          point="ac.soton.eventb.emf.diagrams.navigator.diagramProviders">
       <provider
@@ -73,6 +106,8 @@
             type="Statemachine">
       </provider>
    </extension>
+   
+   
    <extension
          point="org.rodinp.core.refinements">
       <Participant
@@ -94,6 +129,8 @@
             second-participant-id="ac.soton.eventb.statemachines.navigator.refinedEnumerationStatemachineRefiner">
       </Order>
    </extension>
+   
+   
    <extension
          point="ac.soton.eventb.emf.core.extension.navigator.elementRefinement">
       <refinementDefinition

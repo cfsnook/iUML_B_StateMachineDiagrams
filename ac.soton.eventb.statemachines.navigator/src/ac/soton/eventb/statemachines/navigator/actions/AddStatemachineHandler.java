@@ -28,9 +28,11 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.eventb.core.IMachineRoot;
-import org.eventb.emf.core.machine.Machine;
+import org.eventb.core.IEventBRoot;
+import org.eventb.emf.core.EventBElement;
 
+import ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionNavigatorItem;
+import ac.soton.eventb.emf.diagrams.DiagramOwner;
 import ac.soton.eventb.statemachines.Statemachine;
 import ac.soton.eventb.statemachines.StatemachinesFactory;
 import ac.soton.eventb.statemachines.navigator.StatemachinesNavigatorPlugin;
@@ -55,19 +57,19 @@ public class AddStatemachineHandler extends AbstractHandler {
 	};
 	
 	/**
-	 * EMF command for adding a statemachine to a machine.
+	 * EMF command for adding a statemachine to a machine or other container file.
 	 * 
 	 * @author vitaly
 	 *
 	 */
 	public class AddStatemachineCommand extends AbstractEMFOperation {
 
-		private URI machineURI;
+		private URI uri;
 		private Statemachine statemachine;
 
-		public AddStatemachineCommand(URI machineURI, Statemachine statemachine) {
+		public AddStatemachineCommand(URI uri, Statemachine statemachine) {
 			super(TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(), "Add Statemachine");
-			this.machineURI = machineURI;
+			this.uri = uri;
 			this.statemachine = statemachine;
 		}
 
@@ -79,11 +81,15 @@ public class AddStatemachineHandler extends AbstractHandler {
 			TransactionalEditingDomain editingDomain = getEditingDomain();
 			
 			try {
-				Resource resource = editingDomain.getResourceSet().getResource(machineURI, true);
+				Resource resource = editingDomain.getResourceSet().getResource(uri, true);
 				
 				if (resource != null && resource.isLoaded()) {
-					Machine machine = (Machine) resource.getContents().get(0);
-					machine.getExtensions().add(statemachine);
+					EventBElement container =  (EventBElement) resource.getContents().get(0);
+					if (container instanceof DiagramOwner) {
+						((DiagramOwner)container).getDiagrams().add(statemachine);
+					}else {
+						container.getExtensions().add(statemachine);
+					}
 					resource.save(Collections.emptyMap());
 				}
 			} catch (Exception e) {
@@ -100,12 +106,8 @@ public class AddStatemachineHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection selection = HandlerUtil.getCurrentSelectionChecked(event);
 		if (selection instanceof IStructuredSelection) {
-			Object element = ((IStructuredSelection) selection).getFirstElement();
-			if (element instanceof IMachineRoot) {
-				IMachineRoot machineRoot = (IMachineRoot) element;
-				IFile file = machineRoot.getResource();
-					
-				if (file != null && file.exists()) {
+			URI uri = getFileURI(((IStructuredSelection) selection).getFirstElement());
+				if (uri != null) {
 					InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), 
 							"New Statemachine", 
 							"Enter statemachine name: ",
@@ -114,20 +116,32 @@ public class AddStatemachineHandler extends AbstractHandler {
 						return null;
 					String name = dialog.getValue().trim();
 					
-					URI machineURI = URI.createPlatformResourceURI(file.getFullPath().toOSString(), true);
 					Statemachine statemachine = StatemachinesFactory.eINSTANCE.createStatemachine();
 					statemachine.setName(name);
 					try {
-						AddStatemachineCommand command = new AddStatemachineCommand(machineURI, statemachine);
+						AddStatemachineCommand command = new AddStatemachineCommand(uri, statemachine);
 						if (command.canExecute())
 							command.execute(new NullProgressMonitor(), null);
 					} catch (Exception e) {
 						StatemachinesNavigatorPlugin.getDefault().logError("Creating statemachine failed", e);
 					}
 				}
+		}
+		return null;
+	}
+
+	private URI getFileURI(Object element) {
+		if (element instanceof IEventBRoot) {
+			IFile file = ((IEventBRoot)element).getResource();
+			if (file==null || !file.exists()) return null;
+			return URI.createPlatformResourceURI(file.getFullPath().toOSString(), true);
+		}else if (element instanceof ExtensionNavigatorItem) {
+			if (((ExtensionNavigatorItem)element).getEObject() instanceof DiagramOwner) {
+				return ((ExtensionNavigatorItem)element).getEObject().eResource().getURI();
 			}
 		}
 		return null;
 	}
 
+	
 }
