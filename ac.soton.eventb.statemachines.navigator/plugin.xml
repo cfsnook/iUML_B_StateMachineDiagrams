@@ -9,6 +9,7 @@
             id="ac.soton.eventb.statemachines.navigator.nodeFilter"
             name="%commonFilter.node">
       </commonFilter>
+      
       <commonFilter
             activeByDefault="true"
             class="ac.soton.eventb.statemachines.navigator.filters.TransitionFilter"
@@ -16,6 +17,7 @@
             name="%commonFilter.transition">
       </commonFilter>
    </extension>
+   
    <extension
          point="org.eclipse.ui.navigator.viewer">
       <viewerContentBinding
@@ -65,7 +67,6 @@
       </menuContribution>
       
    </extension>
-   
    
    <extension
          point="org.eclipse.core.expressions.definitions">
