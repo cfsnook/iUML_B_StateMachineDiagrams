@@ -20,8 +20,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eventb.emf.core.util.NameUtils;
 
-import ac.soton.eventb.emf.diagrams.Diagram;
-import ac.soton.eventb.emf.diagrams.DiagramsPackage;
 import ac.soton.eventb.statemachines.Initial;
 import ac.soton.eventb.statemachines.Statemachine;
 import ac.soton.eventb.statemachines.StatemachinesFactory;

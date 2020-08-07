@@ -15,8 +15,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eventb.emf.core.machine.Event;
-import org.eventb.emf.core.machine.Guard;
-
 import ac.soton.emf.translator.TranslationDescriptor;
 import ac.soton.emf.translator.configuration.IRule;
 import ac.soton.emf.translator.eventb.rules.AbstractEventBGeneratorRule;
