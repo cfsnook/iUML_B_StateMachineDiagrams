@@ -272,6 +272,7 @@ public class RefinedEnumerationStatemachineRefiner implements IRefinementPartici
 	 * @param internalElement
 	 * @return
 	 */
+	@SuppressWarnings("unlikely-arg-type")
 	private boolean usesStatemachineVariable (IInternalElement internalElement){
 		try {
 			for (IAttributeValue attribute : internalElement.getAttributeValues()) {
