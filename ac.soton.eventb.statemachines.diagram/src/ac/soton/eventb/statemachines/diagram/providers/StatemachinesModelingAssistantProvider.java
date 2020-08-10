@@ -7,12 +7,9 @@
  */
 package ac.soton.eventb.statemachines.diagram.providers;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -28,21 +25,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
-import ac.soton.eventb.statemachines.diagram.edit.parts.Any2EditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.AnyEditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.FinalEditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.Fork2EditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.ForkEditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.InitialEditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.InnerFinalEditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.InnerInitialEditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.InnerStateEditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.Junction2EditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.JunctionEditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.RootStatemachineEditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.StateEditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.StatemachineEditPart;
-import ac.soton.eventb.statemachines.diagram.edit.parts.StatemachineStatesCompartmentEditPart;
 import ac.soton.eventb.statemachines.diagram.part.Messages;
 import ac.soton.eventb.statemachines.diagram.part.StatemachinesDiagramEditorPlugin;
 

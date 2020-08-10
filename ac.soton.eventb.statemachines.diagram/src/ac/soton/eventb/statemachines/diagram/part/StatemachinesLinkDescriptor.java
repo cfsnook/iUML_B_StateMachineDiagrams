@@ -7,9 +7,7 @@
  */
 package ac.soton.eventb.statemachines.diagram.part;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 

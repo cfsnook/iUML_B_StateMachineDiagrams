@@ -7,13 +7,8 @@
  */
 package ac.soton.eventb.statemachines.diagram.edit.parts;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.BorderLayout;
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
@@ -25,7 +20,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -38,7 +32,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.OneLineBorder;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -46,12 +39,10 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.graphics.Color;
 
-import ac.soton.eventb.statemachines.StatemachinesPackage;
 import ac.soton.eventb.statemachines.diagram.edit.policies.OpenDiagramEditPolicy;
 import ac.soton.eventb.statemachines.diagram.edit.policies.StatemachineItemSemanticEditPolicy;
 import ac.soton.eventb.statemachines.diagram.part.StatemachinesDiagramEditorPlugin;
 import ac.soton.eventb.statemachines.diagram.preferences.SpecificDiagramAppearancePreferencePage;
-import ac.soton.eventb.statemachines.diagram.providers.StatemachinesElementTypes;
 
 /**
  * @generated

@@ -43,7 +43,6 @@ import org.eventb.emf.core.EventBElement;
 import ac.soton.eventb.statemachines.AbstractNode;
 import ac.soton.eventb.statemachines.Statemachine;
 import ac.soton.eventb.statemachines.Transition;
-import ac.soton.eventb.statemachines.diagram.edit.helpers.StatemachinesBaseEditHelper;
 import ac.soton.eventb.statemachines.diagram.part.StatemachinesDiagramEditorPlugin;
 import ac.soton.eventb.statemachines.diagram.part.StatemachinesVisualIDRegistry;
 import ac.soton.eventb.statemachines.diagram.providers.StatemachinesElementTypes;

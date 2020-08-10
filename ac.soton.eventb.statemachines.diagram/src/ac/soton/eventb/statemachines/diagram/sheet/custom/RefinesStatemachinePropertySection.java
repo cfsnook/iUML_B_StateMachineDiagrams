@@ -65,7 +65,6 @@ public class RefinesStatemachinePropertySection extends AbstractEnumerationPrope
 	
 	private EList<EObject> getStatemachinesToRefine(){
 		EList<EObject> ret = ECollections.newBasicEList();
-		//EObject container = EcoreUtil.getRootContainer(eObject);
 		EObject container = getTranslationTarget();
 		if (container instanceof Machine) {
 			Machine machine = (Machine) container;

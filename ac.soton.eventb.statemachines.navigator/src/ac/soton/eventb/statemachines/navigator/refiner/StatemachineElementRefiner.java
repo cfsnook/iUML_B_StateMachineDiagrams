@@ -38,7 +38,7 @@ public class StatemachineElementRefiner extends CoreextensionElementRefiner {
 	@Override
 	protected void populateFilterByTypeList(final List<EClass> filterList){
 		super.populateFilterByTypeList(filterList);
-		filterList.add(MachinePackage.Literals.INVARIANT);
+		filterList.add(MachinePackage.Literals.INVARIANT); //used in STATE invariants
 	}
 	
 	/**
@@ -66,7 +66,6 @@ public class StatemachineElementRefiner extends CoreextensionElementRefiner {
 	 */
 	
 	public EventBObject getEquivalentObject(EObject concreteParent, EStructuralFeature feature, EObject abstractObject) {
-		//EClass clazz = abstractObject.eClass();
 		if (abstractObject instanceof Transition){
 			Transition t = (Transition) abstractObject;
 			TreeIterator<EObject> contents = concreteParent.eAllContents();

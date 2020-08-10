@@ -9,7 +9,6 @@ package ac.soton.eventb.statemachines.diagram.edit.parts;
 
 import java.util.Collection;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
@@ -28,8 +27,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.graphics.Color;
 
-import ac.soton.eventb.statemachines.StatemachinesPackage;
-import ac.soton.eventb.statemachines.Transition;
 import ac.soton.eventb.statemachines.diagram.edit.policies.TransitionGhostItemSemanticEditPolicy;
 import ac.soton.eventb.statemachines.diagram.part.StatemachinesDiagramEditorPlugin;
 import ac.soton.eventb.statemachines.diagram.preferences.SpecificDiagramAppearancePreferencePage;

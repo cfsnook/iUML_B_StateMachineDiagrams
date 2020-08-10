@@ -51,10 +51,8 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.RGB;
 
 import ac.soton.eventb.statemachines.State;
-import ac.soton.eventb.statemachines.StatemachinesPackage;
 import ac.soton.eventb.statemachines.diagram.edit.policies.StateItemSemanticEditPolicy;
 import ac.soton.eventb.statemachines.diagram.part.StatemachinesDiagramEditorPlugin;
 import ac.soton.eventb.statemachines.diagram.part.StatemachinesVisualIDRegistry;
@@ -569,15 +567,17 @@ public class StateEditPart extends ShapeNodeEditPart {
 	}
 
 	private String getText() {
-		State state = (State) resolveSemanticElement();
 		String text = "";
-		EList<?> ains = state.getActiveInstances();
-		if (ains != null && ains.size() > 0) {
-			for (Object ins : ains) {
-				if (ins instanceof String) {
-					if (text.length() > 0)
-						text = text + "\n";
-					text = text + ins;
+		State state = (State) resolveSemanticElement();
+		if (state!=null){
+			EList<?> ains = state.getActiveInstances();
+			if (ains != null && ains.size() > 0) {
+				for (Object ins : ains) {
+					if (ins instanceof String) {
+						if (text.length() > 0)
+							text = text + "\n";
+						text = text + ins;
+					}
 				}
 			}
 		}

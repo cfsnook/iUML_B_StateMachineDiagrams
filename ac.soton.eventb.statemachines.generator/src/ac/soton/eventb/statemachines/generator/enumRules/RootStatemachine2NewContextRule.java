@@ -16,6 +16,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eventb.emf.core.EventBNamedCommentedComponentElement;
 import org.eventb.emf.core.context.Context;
+import org.eventb.emf.core.machine.Machine;
 
 import ac.soton.emf.translator.TranslationDescriptor;
 import ac.soton.emf.translator.configuration.IRule;
@@ -49,7 +50,7 @@ public class RootStatemachine2NewContextRule extends AbstractEventBGeneratorRule
 
 		Statemachine refinedStatemachine = ((Statemachine)sourceElement).getRefines();
 		if  (refinedStatemachine != null){
-			EventBNamedCommentedComponentElement refinedContainer = Utils.getTranslationTarget();			
+			EventBNamedCommentedComponentElement refinedContainer = ((Machine)Utils.getTranslationTarget()).getRefines().get(0);			
 			if (refinedContainer != null){
 				String refinedStatemachineContextName = Strings.CTX_NAME(refinedContainer, refinedStatemachine);
 				if(!implicitContext.getExtendsNames().contains(refinedStatemachineContextName)){

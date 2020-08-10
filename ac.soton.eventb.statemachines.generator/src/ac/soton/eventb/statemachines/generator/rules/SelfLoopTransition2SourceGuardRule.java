@@ -15,8 +15,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eventb.emf.core.machine.Event;
-import org.eventb.emf.core.machine.Guard;
-
 import ac.soton.emf.translator.TranslationDescriptor;
 import ac.soton.emf.translator.configuration.IRule;
 import ac.soton.emf.translator.eventb.rules.AbstractEventBGeneratorRule;
@@ -59,10 +57,9 @@ public class SelfLoopTransition2SourceGuardRule extends AbstractEventBGeneratorR
 		String name = Strings.ISIN_ + sourceState.getName();
 		String predicate = generatePredicate(sourceState);
 		
-		Guard grd = (Guard) Make.guard(name, predicate);
-		
 		for(Event e : sourceTransition.getElaborates()){
-			ret.add(Make.descriptor(e, guards, Make.guard(grd.getName(), grd.isTheorem(), grd.getPredicate(),grd.getComment()), 10));
+//			ret.add(Make.descriptor(e, guards, Make.guard(grd.getName(), grd.isTheorem(), grd.getPredicate(),grd.getComment()), 10));
+			ret.add(Make.descriptor(e, guards, Make.guard(name, predicate), 10));
 			
 		}
 		

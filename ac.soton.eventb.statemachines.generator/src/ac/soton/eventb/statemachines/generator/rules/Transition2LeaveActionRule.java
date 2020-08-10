@@ -40,12 +40,17 @@ public class Transition2LeaveActionRule extends AbstractEventBGeneratorRule  imp
 	private List<TranslationDescriptor> generatedElements;
 	
 	/**
-	 * Rule should only fire on non circular transitions
+	 * Rule to generate actions that leave the source state 
+	 * and any nested states, except those being re-entered.
+	 * 
+	 * Note that we do not fire this rule for self loops when the enumeration 
+	 * translation is used because the enter actions will implicitly do any leaving of other states
 	 * 
 	 */
 	@Override
 	public boolean enabled(EObject sourceElement) throws Exception{
-		return !Utils.isSelfLoop((Transition)sourceElement);
+		rootSM = Utils.getRootStatemachine(((Transition) sourceElement).getTarget());
+		return rootSM.getTranslation().equals(TranslationKind.MULTIVAR) || !Utils.isSelfLoop((Transition)sourceElement); 
 	}
 	
 	
