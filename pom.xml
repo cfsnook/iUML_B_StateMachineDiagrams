@@ -16,7 +16,7 @@
     <!-- Name of the release engineering artifact -->
     <artifactId>releng</artifactId>
     <!-- REQUIRED: Version number of the release engineering artifact -->
-    <version>4.0.1-SNAPSHOT</version>
+    <version>4.0.1.release</version>
     <!-- REQUIRED: Relative path to the release engineering artifact -->
     <relativePath>./ac.soton.eventb.statemachines.releng</relativePath>
   </parent>
